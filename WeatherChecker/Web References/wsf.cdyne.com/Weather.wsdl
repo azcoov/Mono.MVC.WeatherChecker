@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s0="http://ws.cdyne.com/WeatherWS/" xmlns:tns="http://ws.cdyne.com/WeatherWS/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://ws.cdyne.com/WeatherWS/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://ws.cdyne.com/WeatherWS/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetWeatherInformation">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="GetWeatherInformationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetWeatherInformationResult" type="tns:ArrayOfWeatherDescription" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOfWeatherDescription">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="WeatherDescription" type="tns:WeatherDescription" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="WeatherDescription">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="WeatherID" type="xs:short" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PictureURL" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetCityForecastByZIP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ZIP" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCityForecastByZIPResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="GetCityForecastByZIPResult" type="tns:ForecastReturn" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ForecastReturn">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Success" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ResponseText" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="State" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForecastResult" type="tns:ArrayOfForecast" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfForecast">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Forecast" nillable="true" type="tns:Forecast" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Forecast">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="1" maxOccurs="1" name="WeatherID" type="xs:short" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Desciption" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Temperatures" type="tns:temp" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ProbabilityOfPrecipiation" type="tns:POP" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="temp">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MorningLow" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DaytimeHigh" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="POP">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Nighttime" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Daytime" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetCityWeatherByZIP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ZIP" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCityWeatherByZIPResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="GetCityWeatherByZIPResult" type="tns:WeatherReturn" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="WeatherReturn">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Success" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ResponseText" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="State" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="City" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WeatherStationCity" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="WeatherID" type="xs:short" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Temperature" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RelativeHumidity" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Wind" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Pressure" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Visibility" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WindChill" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Remarks" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfWeatherDescription" nillable="true" type="tns:ArrayOfWeatherDescription" />
+      <xs:element name="ForecastReturn" nillable="true" type="tns:ForecastReturn" />
+      <xs:element name="WeatherReturn" type="tns:WeatherReturn" />
+    </xs:schema>
+  </types>
+  <message name="GetWeatherInformationSoapIn">
+    <part name="parameters" element="tns:GetWeatherInformation" />
+  </message>
+  <message name="GetWeatherInformationSoapOut">
+    <part name="parameters" element="tns:GetWeatherInformationResponse" />
+  </message>
+  <message name="GetCityForecastByZIPSoapIn">
+    <part name="parameters" element="tns:GetCityForecastByZIP" />
+  </message>
+  <message name="GetCityForecastByZIPSoapOut">
+    <part name="parameters" element="tns:GetCityForecastByZIPResponse" />
+  </message>
+  <message name="GetCityWeatherByZIPSoapIn">
+    <part name="parameters" element="tns:GetCityWeatherByZIP" />
+  </message>
+  <message name="GetCityWeatherByZIPSoapOut">
+    <part name="parameters" element="tns:GetCityWeatherByZIPResponse" />
+  </message>
+  <message name="GetWeatherInformationHttpGetIn" />
+  <message name="GetWeatherInformationHttpGetOut">
+    <part name="Body" element="tns:ArrayOfWeatherDescription" />
+  </message>
+  <message name="GetCityForecastByZIPHttpGetIn">
+    <part name="ZIP" type="s:string" />
+  </message>
+  <message name="GetCityForecastByZIPHttpGetOut">
+    <part name="Body" element="tns:ForecastReturn" />
+  </message>
+  <message name="GetCityWeatherByZIPHttpGetIn">
+    <part name="ZIP" type="s:string" />
+  </message>
+  <message name="GetCityWeatherByZIPHttpGetOut">
+    <part name="Body" element="tns:WeatherReturn" />
+  </message>
+  <message name="GetWeatherInformationHttpPostIn" />
+  <message name="GetWeatherInformationHttpPostOut">
+    <part name="Body" element="tns:ArrayOfWeatherDescription" />
+  </message>
+  <message name="GetCityForecastByZIPHttpPostIn">
+    <part name="ZIP" type="s:string" />
+  </message>
+  <message name="GetCityForecastByZIPHttpPostOut">
+    <part name="Body" element="tns:ForecastReturn" />
+  </message>
+  <message name="GetCityWeatherByZIPHttpPostIn">
+    <part name="ZIP" type="s:string" />
+  </message>
+  <message name="GetCityWeatherByZIPHttpPostOut">
+    <part name="Body" element="tns:WeatherReturn" />
+  </message>
+  <portType name="WeatherSoap">
+    <operation name="GetWeatherInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets Information for each WeatherID</wsdl:documentation>
+      <input message="tns:GetWeatherInformationSoapIn" />
+      <output message="tns:GetWeatherInformationSoapOut" />
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City Forecast Over the Next 7 Days, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityForecastByZIPSoapIn" />
+      <output message="tns:GetCityForecastByZIPSoapOut" />
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City's Weather, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityWeatherByZIPSoapIn" />
+      <output message="tns:GetCityWeatherByZIPSoapOut" />
+    </operation>
+  </portType>
+  <portType name="WeatherHttpGet">
+    <operation name="GetWeatherInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets Information for each WeatherID</wsdl:documentation>
+      <input message="tns:GetWeatherInformationHttpGetIn" />
+      <output message="tns:GetWeatherInformationHttpGetOut" />
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City Forecast Over the Next 7 Days, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityForecastByZIPHttpGetIn" />
+      <output message="tns:GetCityForecastByZIPHttpGetOut" />
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City's Weather, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityWeatherByZIPHttpGetIn" />
+      <output message="tns:GetCityWeatherByZIPHttpGetOut" />
+    </operation>
+  </portType>
+  <portType name="WeatherHttpPost">
+    <operation name="GetWeatherInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets Information for each WeatherID</wsdl:documentation>
+      <input message="tns:GetWeatherInformationHttpPostIn" />
+      <output message="tns:GetWeatherInformationHttpPostOut" />
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City Forecast Over the Next 7 Days, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityForecastByZIPHttpPostIn" />
+      <output message="tns:GetCityForecastByZIPHttpPostOut" />
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get your City's Weather, which is updated hourly. U.S. Only</wsdl:documentation>
+      <input message="tns:GetCityWeatherByZIPHttpPostIn" />
+      <output message="tns:GetCityWeatherByZIPHttpPostOut" />
+    </operation>
+  </portType>
+  <binding name="WeatherSoap" type="tns:WeatherSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="GetWeatherInformation">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <soap:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="WeatherSoap12" type="tns:WeatherSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="GetWeatherInformation">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetWeatherInformation" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityForecastByZIP" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <soap12:operation soapAction="http://ws.cdyne.com/WeatherWS/GetCityWeatherByZIP" style="document" />
+      <input>
+        <soap12:body use="literal" />
+      </input>
+      <output>
+        <soap12:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="WeatherHttpGet" type="tns:WeatherHttpGet">
+    <http:binding verb="GET" />
+    <operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP" />
+      <input>
+        <http:urlEncoded />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="WeatherHttpPost" type="tns:WeatherHttpPost">
+    <http:binding verb="POST" />
+    <operation name="GetWeatherInformation">
+      <http:operation location="/GetWeatherInformation" />
+      <input>
+        <mime:content part="" type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="GetCityForecastByZIP">
+      <http:operation location="/GetCityForecastByZIP" />
+      <input>
+        <mime:content part="" type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+    <operation name="GetCityWeatherByZIP">
+      <http:operation location="/GetCityWeatherByZIP" />
+      <input>
+        <mime:content part="" type="application/x-www-form-urlencoded" />
+      </input>
+      <output>
+        <mime:mimeXml part="Body" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Weather">
+    <port name="WeatherSoap" binding="tns:WeatherSoap">
+      <soap:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" />
+    </port>
+    <port name="WeatherSoap12" binding="tns:WeatherSoap12">
+      <soap12:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" />
+    </port>
+    <port name="WeatherHttpGet" binding="tns:WeatherHttpGet">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" />
+    </port>
+    <port name="WeatherHttpPost" binding="tns:WeatherHttpPost">
+      <http:address location="http://wsf.cdyne.com/WeatherWS/Weather.asmx" />
+    </port>
+  </service>
+</definitions>

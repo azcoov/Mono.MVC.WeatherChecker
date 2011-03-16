@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:scl="http://schemas.xmlsoap.org/disco/scl/" xmlns="http://schemas.xmlsoap.org/disco/">
+  <scl:contractRef docRef="http://wsf.cdyne.com/WeatherWS/Weather.asmx" ref="http://wsf.cdyne.com/WeatherWS/Weather.asmx?wsdl" />
+</discovery>
